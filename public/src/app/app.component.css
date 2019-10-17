@@ -1,0 +1,13 @@
+.rateCake {
+    width: 70%;
+    display: flex;
+}
+.cakeinfo {
+    width: 50%;
+}
+h4 {
+    margin: 15px 5px;
+}
+p {
+    margin: 10px 5px;
+}

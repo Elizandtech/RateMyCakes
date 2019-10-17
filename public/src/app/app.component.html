@@ -1,0 +1,113 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<style>
+  
+
+
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+
+    .card-container > *:not(.circle-link) ,
+    .terminal {
+      width: 100%;
+    }
+
+    .card:not(.highlight-card) {
+      height: 16px;
+      margin: 8px 0;
+    }
+
+    .card.highlight-card span {
+      margin-left: 72px;
+    }
+
+    svg#rocket-smoke {
+      right: 120px;
+      transform: rotate(-5deg);
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+      display: none;
+      visibility: hidden;
+    }
+  }
+</style>
+<!-- Toolbar -->
+<!-- <img -->
+<div class="container my-3">
+    <h1>{{title}}</h1>
+    <div class="row">
+      <div class="card col" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Submit a Cake to be Rated</h5>
+          <!--     <p> {{ newCake | json }} </p> -->
+          <hr>
+          <form (submit)="onSubmit()">
+              <div class="form-group">
+                <label for="baker">Baker name:</label>
+                <input type="text" class="form-control" name="newCake.baker" [(ngModel)]="newCake.baker" id="baker"/>
+              </div>
+              <div class="form-group">
+                <label for="image">Image URL</label>
+                <input type="url" class="form-control" name="newCake.image" [(ngModel)]="newCake.image" id="image"/>
+              </div>
+              <button type="submit" class="btn btn-success">Add Cake</button>
+          </form>
+        </div>
+      </div>
+      <div class="card col" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"> All Cakes</h5>
+          <hr>
+          <div *ngFor="let cake of cakes" (click)="onCake(cake)" class="card-text">
+            <div class="row">
+              <div class="col">
+                <img class="rateCake" src="{{cake?.image}}" alt="anicecake">
+              </div>
+              <div class="col">
+                <!-- <h6>{{cake.baker}}</h6> -->
+                <form (submit)="onRate(cake)">
+                  <!-- {{ inputRating | json}} -->
+                    <div class="form-group">
+                        <label for="rate"></label>
+                        <select class="form-control" type="number" name="rate" [(ngModel)]="inputRating.rating" id="rate">
+                          <option *ngFor="let number of select">{{number}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="comm">comment</label>
+                      <input type="text" class="form-control" name="comm" [(ngModel)]="inputRating.comment" id="comm"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Rate Cake</button>
+                </form>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div><app-cake *ngIf='displaycake' [displaycake] = 'displaycake' [average] = 'average'></app-cake>
+    </div>
+</div>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+
+<router-outlet></router-outlet>

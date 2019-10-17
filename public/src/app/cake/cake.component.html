@@ -1,0 +1,14 @@
+<h1 class="my-4">Baked by: {{displaycake.baker}}</h1>
+    <div class="row">
+    <img class="cakeinfo" src="{{displaycake.image}}" alt="acake">
+    <div class="card col" style="width: 18rem;">
+        <div class="card-body">
+            <h4>Average Rating: {{average}} </h4>
+            <h4>All Comments: </h4>
+            <div *ngFor="let comments of displaycake.ratings">
+            <p>{{comments.comment}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
